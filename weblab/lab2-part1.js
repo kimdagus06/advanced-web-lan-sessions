@@ -17,7 +17,7 @@ document.body.appendChild(section);
 // JavaScript
 const paragraph = document.querySelector("p");
 const parentDiv = paragraph.parentElement;
-console.log(parentDiv); // Output: <div>...</div>
+console.log(parentDiv);
 
 /* Assignment 2: Access Children of an Element
 Objective: Use  children  to get child elements.
@@ -181,13 +181,19 @@ Task:
   liE.id = "itemE";
   liE.textContent = "Elderberry";
 
-  // JavaScript
   ulWithItems.appendChild(liA);
   ulWithItems.appendChild(liB);
   ulWithItems.appendChild(liC);
   ulWithItems.appendChild(liD);
   ulWithItems.appendChild(liE);
   document.body.appendChild(ulWithItems);
+
+  // Javescript
+  const numberOfItems = ulWithItems.children.length;
+  console.log(`Number of items: ${numberOfItems}`);
+
+  const itemIds = Array.from(ulWithItems.children).map((li) => li.id);
+  console.log(`Item IDs: ${itemIds.join(", ")}`);
 }
 
 /* Assignment 8: Access the Parent of the Parent
@@ -197,15 +203,20 @@ Task:
 2. Select the  <div>  and log the  <body>  element.
 */
 
-const section2 = document.createElement("section");
-const divInsideSection = document.createElement("div");
-divInsideSection.textContent = "This is a div inside a section.";
-section2.appendChild(divInsideSection);
-document.body.appendChild(section2);
+// HTML structure
+const section8 = document.createElement("section");
+section8.id = "grandparent-section";
 
-const selectedDiv = document.querySelector("section div");
-const bodyElement = selectedDiv.parentElement.parentElement;
-console.log(bodyElement); // Output: <body>...</body>
+const div8 = document.createElement("div");
+div8.textContent = "This is a div inside a section.";
+
+section8.appendChild(div8);
+document.body.appendChild(section8);
+
+// JavaScript
+const targetDiv = div8;
+const bodyElement = targetDiv.parentElement.parentElement;
+console.log(bodyElement);
 
 /* Assignment 9: Select Specific Child
 Objective: Use  children  to access a specific child.
@@ -236,8 +247,6 @@ Objective: Use  nextElementSibling  in a loop to traverse all siblings.
 Task:
 1. Create a  <ul>  with multiple  <li>  elements.
 2. Select the first  <li>  and traverse through all siblings, logging each one.
-HTML:
-JavaScript
 */
 
 {
