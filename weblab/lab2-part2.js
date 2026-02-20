@@ -116,3 +116,26 @@ Solution:
     displayDiv.textContent = inputField.value;
   });
 }
+
+/* Assignment 7: Adding and Removing Classes
+Objective: Use classList to manipulate CSS classes.
+Task:
+1. Create a <div> with the class box .
+2. Add JavaScript to toggle a class highlight on the <div> when clicked.
+Solution:*/
+
+//-- HTML Code (if necessary)-----
+/* <style>
+  .box { width: 100px; height: 100px; background-color: lightgray; cursor: pointer; }
+  .highlight { background-color: yellow; border: 2px solid orange; }
+</style>
+
+<div class="box">Click Me</div>
+*/
+
+//-- Javascript Code (if necessary split it up into server and client code)-----
+// [Client Side]
+const boxElement = document.querySelector(".box");
+boxElement.addEventListener("click", () => {
+  boxElement.classList.toggle("highlight");
+});

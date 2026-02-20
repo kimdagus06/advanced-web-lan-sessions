@@ -70,3 +70,21 @@ document.body.appendChild(threeParagraphs);
 const secondParagraph = threeParagraphs.children[1];
 
 console.log(secondParagraph);
+
+// Sheet 2p2 Assignment 7
+//-- HTML Code (if necessary)-----
+/* <style>
+  .box { width: 100px; height: 100px; background-color: lightgray; cursor: pointer; }
+  .highlight { background-color: yellow; border: 2px solid orange; }
+</style>
+<div class="box">Click Me</div>
+*/
+
+//-- Javascript Code (if necessary split it up into server and client code)-----
+// [Client Side]
+const boxElement = document.querySelector(".box");
+boxElement.addEventListener("click", () => {
+  boxElement.classList.toggle("highlight");
+});
+
+// Sheet 3p1 Assignment 1
