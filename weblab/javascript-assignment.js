@@ -88,3 +88,103 @@ boxElement.addEventListener("click", () => {
 });
 
 // Sheet 3p1 Assignment 1
+//-- Javascript Code (if necessary split it up into server and client code)-----
+// [Client Side]
+const source =
+  "https://gist.githubusercontent.com/mapoto/515827c73f7f60a14cf2914f0cca16f0/raw/c41bc850bc989cadf6a1caa394ab12fce105d59e/countries.json";
+
+fetch(source)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    const countryList = document.createElement("ul");
+
+    data.forEach((country) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = country.name;
+      countryList.appendChild(listItem);
+    });
+
+    document.body.appendChild(countryList);
+  })
+  .catch((error) => {
+    console.error("Error fetching countries:", error);
+  });
+
+// Sheet 3p2 Assignment 2
+//-- Javascript Code (if necessary split it up into server and client code)-----
+// Solution (Server-Side)
+app.put("/api/products/:id", (req, res) => {
+  const productId = parseInt(req.params.id);
+  const productIndex = products.findIndex((p) => {
+    return p.id === productId;
+  });
+  if (productIndex === -1) {
+    return res.status(404).json({ message: "Product not found" });
+  }
+
+  const updatedProduct = { ...products[productIndex], ...req.body };
+  products[productIndex] = updatedProduct;
+  res.json(updatedProduct);
+});
+
+// Solution (Client-Side)
+function updateProduct(id, updatedData) {
+  fetch(`/api/products/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedData),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Update Success:", data);
+    })
+    .catch((error) => {
+      console.error("Update Error:", error);
+    });
+}
+
+// Sheet 3p2 Assignment 1
+//-- Javascript Code (if necessary split it up into server and client code)-----
+// Solution (Server-Side)
+app.post("/api/products", (req, res) => {
+  const { name, price } = req.body;
+
+  if (!name || !price) {
+    return res.status(400).json({ message: "Name and price are required" });
+  }
+
+  const newProduct = {
+    id: products.length + 1,
+    name: name,
+    price: price,
+  };
+  products.push(newProduct);
+
+  res.status(201).json(newProduct);
+});
+
+// Solution (Client-Side)
+function addProduct(name, price) {
+  fetch("/api/products", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name: name, price: price }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Product Added:", data);
+    })
+    .catch((error) => {
+      console.error("Error Adding Product:", error);
+    });
+}
